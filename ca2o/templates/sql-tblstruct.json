@@ -1,0 +1,23 @@
+{
+    "tables" : [{
+        "Posts" : [
+            {"ID" : { "type" : "int", "identity" : "true" }},
+            {"Title" : { "type" : "varchar", "length" : "100" }},
+            {"CreateDate" : { "type" : "datetime" }},
+            {"Body" : { "type" : "text" }},
+            {"AuthorID" : { "type" : "int",  "foreingkey" : "Authors" }}
+        ],
+        "Authors" : [
+            {"ID" : { "type" : "int",  "identity" : "true" }},
+            {"FirstName" : { "type" : "varchar", "length" : "100" }},
+            {"LastName" : { "type" : "varchar", "length" : "100" }}
+        ],
+        "Comments" : [ 
+            {"ID" : {  "type" : "int", "identity" : "true" }},
+            {"Comment" : { "type" : "text" }},
+            {"Email" : { "type" : "varchar", "length" : "100" }},
+            {"CreateDate" : { "type" : "datetime" }},
+            {"PostID" : { "type" : "int", "foreingkey" : "Posts" }}
+        ]
+    }]
+}

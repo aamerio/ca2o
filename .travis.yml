@@ -4,8 +4,8 @@ python:
 install: 
     - "pip install -r requirements.txt --use-mirrors"
     - "pip install coverage"
-    - "pip install coveralls"
+#    - "pip install coveralls"
 script: 
 #    - "coverage run --source=ca2o setup.py test"
 after_success:
-    coveralls
+#    coveralls
