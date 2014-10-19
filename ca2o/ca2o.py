@@ -5,11 +5,12 @@ __version__ = '0.0.1'
 
 import json, time
 
+
 class Generator():
 
-    def __init__(self, inputfile, outputfile, template):
+    def __init__(self, inputfile, template):
         self._inputfile = inputfile
-        self._outputfile = outputfile
+        self._outputfile = "outputs/sample.txt"
         self._template = template
 
     def parseJSON(self):
@@ -29,8 +30,8 @@ class Generator():
             destination_file.write('\n%s' % contents)
 
 class mysqlGenerator(Generator):
-    def __init__(self, inputfile, outputfile, template):
-        Generator.__init__(self, inputfile, outputfile, template)
+    def __init__(self, inputfile, template):
+        Generator.__init__(self, inputfile, template)
 
     def do(self):
         data = self.parseJSON()
@@ -71,18 +72,31 @@ class mysqlGenerator(Generator):
         return sql_line
 
 class phpGenerator(Generator):
-    def __init__(self, inputfile, outputfile, template):
-        Generator.__init__(self, inputfile, outputfile, template)
+    def __init__(self, inputfile, template):
+        Generator.__init__(self, inputfile, template)
 
-    def generate(self):
-        pass
+    def do(self):
+        data = self.parseJSON()
+        tmpl = self.readTemplate()
+        #output = data["params"]["output"] || self._outputfile
+        body = "test php template (%s) %s\n" % (data["params"]["output"], time.strftime("%Y-%m-%d %H:%M:%S"))
+        print data["params"]["output"]
+        
+        #self.generate(body)
 
 def main():
     objects = []
-    example_in = 'templates/sql-tblstruct.json'
-    example_out = 'outputs/sql-tblstruct.sql'
-    template = 'templates/sql.tmpl'
-    dog = mysqlGenerator(example_in, example_out, template)
+    """ sample sql """
+    #example_in = 'templates/sql-tblstruct.json'
+    #example_out = 'outputs/sql-tblstruct.sql'
+    #template = 'templates/sql.tmpl'
+    #dog = mysqlGenerator(example_in, example_out, template)
+    """ sample php """
+    example_in = 'templates/php-head.json'
+    template = 'templates/php-head.tmpl'
+    dog = phpGenerator(example_in, template)
+   
+
     bone = dog.do()
     
 
