@@ -29,6 +29,23 @@ class Generator():
         with open(self._outputfile, "a+") as destination_file:
             destination_file.write('\n%s' % contents)
 
+    def prepare_keys_values(self, partial, template, separator):
+        prepare = []
+        for l in partial:
+            elements = ""
+            for k in l:
+                elements = "%s %s %s \"%s\"" % (elements, k, separator, l[k])
+            prepare.append(template.replace("#", elements))
+        return prepare
+
+    def prepare_list(self, partial, template):
+        prepare = []
+        elements = ""
+        for l in partial:
+            prepare.append(template.replace("#", l))
+        return prepare
+
+
 class mysqlGenerator(Generator):
     def __init__(self, inputfile, template):
         Generator.__init__(self, inputfile, template)
@@ -78,11 +95,21 @@ class phpGenerator(Generator):
     def do(self):
         data = self.parseJSON()
         tmpl = self.readTemplate()
-        #output = data["params"]["output"] || self._outputfile
-        body = "test php template (%s) %s\n" % (data["params"]["output"], time.strftime("%Y-%m-%d %H:%M:%S"))
-        print data["params"]["output"]
-        
-        #self.generate(body)
+        output = data["params"]["output"] if "output" in data["params"] else self._outputfile
+        pathcss = data["params"]["path-css"] if "path-css" in data["params"] else ""
+        body = "test php template (%s) %s\n" % (output, time.strftime("%Y-%m-%d %H:%M:%S"))
+        tmpl = tmpl.replace("[HEAD-META]", "\n".join(self.prepare_keys_values(data["content"]["HEAD-META"], "    <meta #>", "=")))
+        tmpl = tmpl.replace("[TITLE]", data["content"]["TITLE"])
+        template_css = "    <link href=\"%s#\" rel=\"stylesheet\" type=\"text/css\">" % pathcss
+        tmpl = tmpl.replace("[CSS]", "\n".join(self.prepare_list(data["content"]["CSS"]["list"], template_css)))
+        template_js = "    <script type=\"text/javascript\" src=\"#\" ></script>"
+        if data["content"]["CDN"]["default"] == "true":
+            tmpl = tmpl.replace("[CDN]", "\n".join(self.prepare_list(data["content"]["CDN"]["list"], template_js)))
+        else:
+            tmpl = tmpl.replace("[CDN]", "")
+        tmpl = tmpl.replace("[SCRIPT]", "\n".join(self.prepare_list(data["content"]["SCRIPT"]["list"], template_js)))
+        tmpl = tmpl.replace("[BODY-HEADER]", "\n".join(self.prepare_keys_values(data["content"]["BODY-HEADER"], "#", "=")))
+        self.generate(tmpl)
 
 def main():
     objects = []
