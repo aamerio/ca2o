@@ -3,10 +3,11 @@
 [![Requirements Status](https://requires.io/github/aamerio/ca2o/requirements.svg?branch=develop)](https://requires.io/github/aamerio/ca2o/requirements/?branch=develop)
 [![Build Status](https://travis-ci.org/aamerio/ca2o.svg?branch=develop)](https://travis-ci.org/aamerio/ca2o)
 ca2o
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/aamerio/ca2o?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 =============
 ### Python code generator
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/aamerio/ca2o?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Classes of automatic code generation on JSON's template
 
 ### ReadTheDocs page 
