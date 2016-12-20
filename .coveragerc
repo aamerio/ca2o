@@ -1,1 +1,7 @@
-repo_token = 6ULTl2TGi3T1zrI7TA0T3UmEok6spgY46
+[run]
+source = ca2o
+parallel = true
+
+[report]
+exclude_lines = def __repr__
+fail_under = 100

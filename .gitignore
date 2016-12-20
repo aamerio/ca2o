@@ -1,3 +1,4 @@
+.coveralls.yml
 ca2o/outputs/
 # Byte-compiled / optimized / DLL files
 __pycache__/
