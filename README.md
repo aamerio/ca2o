@@ -4,14 +4,13 @@
 [![Build Status](https://travis-ci.org/aamerio/ca2o.svg?branch=develop)](https://travis-ci.org/aamerio/ca2o)
 ca2o
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/aamerio/ca2o?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Documentation Status](https://readthedocs.org/projects/ca2o/badge/?version=latest)](http://ca2o.readthedocs.io/en/latest/?badge=latest)
+
 =============
 ### Python code generator
 
 
 Classes of automatic code generation on JSON's template
-
-### ReadTheDocs page 
-https://readthedocs.org/projects/ca2o/
 
 "Quickstart" documentation 
 -------------
