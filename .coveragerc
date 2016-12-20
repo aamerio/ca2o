@@ -1,0 +1,7 @@
+[run]
+source = data_acquisition
+parallel = true
+
+[report]
+exclude_lines = def __repr__
+fail_under = 100
