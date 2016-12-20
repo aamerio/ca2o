@@ -13,8 +13,5 @@ Classes of automatic code generation on JSON's template
 
 "Quickstart" documentation 
 -------------
-...
+This is an exercise project.
 
-A list of non-Python dependencies (if any) and how to install them
--------------
-...
